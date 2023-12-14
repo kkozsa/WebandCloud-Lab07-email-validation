@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <script>
+      function validateemail() {
+        var x = document.myform.email.value;
+        var atposition = x.indexOf('@');
+        var dotposition = x.lastIndexOf('.');
+
+        // Check if '@' is not present or appears at the start,
+        // or there are fewer than 3 characters before '@'
+        if (atposition < 1 || atposition < 3) {
+          alert('Please enter a valid email address with at least 3 characters before "@"');
+          return false;
+        }
+
+        // Check if dot is present, and its position is valid
+        if (
+          dotposition < atposition + 3 ||
+          dotposition + 2 >= x.length ||
+          dotposition === -1
+        ) {
+          alert(
+            'Please enter a valid email address\nDot position is incorrect.'
+          );
+          return false;
+        }
+
+        return true;
+      }
+    </script>
+
+    <form
+      name="myform"
+      method="post"
+      action="/action_page.php"
+      onsubmit="return validateemail();"
+    >
+      email: <input type="text" name="email"><br />
+
+      <input type="submit" value="register">
+    </form>
+  </body>
+</html>
